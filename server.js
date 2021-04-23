@@ -1,22 +1,33 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const express = require('express');
-const PORT = process.env.PORT || 3001;
-const app = express(); 
+const app = express();
+const path = require("path");
 
-const apiRoutes = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
+const PORT = process.env.PORT || 3001;
 
   // parse incoming string or array data
   app.use(express.urlencoded({ extended: true }));
   // parse incoming JSON data
   app.use(express.json());
 
-    app.use('/api', apiRoutes);
-    app.use('/', htmlRoutes);
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname,"./Develop/public/notes.html"))
+})
 
+
+
+    //const { notes } = require('.Develop/db.json');
+//const { Router } = require("express");
+
+
+
+    app.delete('/api/notes/:id', function(req, res, next) {
+        req.params.id
+        res.send({type:'DELETE'});
+    });
 
  
-app.listen(PORT, () => {
+app.listen(3001, () => {
     console.log(`API server now on port ${PORT}!`);
     });
