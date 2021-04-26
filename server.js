@@ -32,8 +32,8 @@ app.get("/api/notes", function(req, res) {
 })
 
  app.post("/api/notes", function(req, res) {
-     console.log(JSON.stringify.body)
-     fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), JSON.stringify.body, function (err) {
+     console.log(JSON.stringify(body))
+     fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), JSON.stringify(body), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
