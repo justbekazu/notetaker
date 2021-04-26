@@ -3,10 +3,9 @@ const fs = require("fs");
 const express = require('express');
 const app = express();
 const path = require("path");
-//const { resolveSoa } = require("dns");
 const uniqid = require("uniqid");
 
-console.log(uniqid);
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -27,8 +26,13 @@ app.get("/api/notes", function(req, res) {
    var noteFile = fs.readFileSync(path.join(__dirname,"./Develop/db/db.json"), "utf8")
     res.json(JSON.parse(noteFile))
 
-    console.log(noteFile);
+    console.log(noteFile)
 })
+
+// app.post("/api/notes", function(req, res) {
+//     var 
+// }
+// )
 
     //const { notes } = require('.Develop/db.json');
 //const { Router } = require("express");
@@ -36,8 +40,19 @@ app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname,"./Develop/public/index.html"))
 })
 
+// inquirer.prompt([{
+//     type: "input",
+//     name: 'title',
+//     message: 'note title'
+// },
+// { type:"input",
+//     name:"text",
+//     message:"type note here"
 
-    // app.delete('/api/notes/:id', function(req, res, next) {
+// },
+// ])
+
+  //console.log(answers)  // app.delete('/api/notes/:id', function(req, res, next) {
     //     req.params.id
     //     res.send({type:'DELETE'});
     // });
