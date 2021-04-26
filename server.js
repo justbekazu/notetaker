@@ -23,34 +23,27 @@ app.get("/notes", function(req, res) {
 
 
 app.get("/api/notes", function(req, res) {
+
    var noteFile = fs.readFileSync(path.join(__dirname,"./Develop/db/db.json"), "utf8")
+   console.log(noteFile)
     res.json(JSON.parse(noteFile))
 
     console.log(noteFile)
 })
 
-// app.post("/api/notes", function(req, res) {
-//     var 
-// }
-// )
-
-    //const { notes } = require('.Develop/db.json');
-//const { Router } = require("express");
+ app.post("/api/notes", function(req, res) {
+     console.log(req.body.note)
+     fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), req.body.note, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+      });
+ })
+ 
 app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname,"./Develop/public/index.html"))
 })
 
-// inquirer.prompt([{
-//     type: "input",
-//     name: 'title',
-//     message: 'note title'
-// },
-// { type:"input",
-//     name:"text",
-//     message:"type note here"
 
-// },
-// ])
 
   //console.log(answers)  // app.delete('/api/notes/:id', function(req, res, next) {
     //     req.params.id
