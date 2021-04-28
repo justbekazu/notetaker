@@ -25,18 +25,17 @@ app.get("/notes", function(req, res) {
 app.get("/api/notes", function(req, res) {
 
    var noteFile = fs.readFileSync(path.join(__dirname,"./Develop/db/db.json"), "utf8")
-   console.log(noteFile)
+  
     res.json(JSON.parse(noteFile))
-
-    console.log(noteFile)
 })
 
  app.post("/api/notes", function(req, res) {
      console.log(JSON.stringify(body))
-     fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), JSON.stringify(body), function (err) {
+      fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), JSON.stringify(body), function (err) {
         if (err) throw err;
-        console.log('Saved!');
-      });
+         console.log('Saved!');
+       });
+      console.log("hello")
  })
  
 app.get("*", function(req, res) {
