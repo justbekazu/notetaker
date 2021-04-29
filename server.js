@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const uniqid = require("uniqid");
+const db = require("./Develop/db/db.json");
+
 
 
 
@@ -30,12 +32,21 @@ app.get("/api/notes", function(req, res) {
 })
 
  app.post("/api/notes", function(req, res) {
-     console.log(JSON.stringify(body))
-      fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), JSON.stringify(body), function (err) {
-        if (err) throw err;
-         console.log('Saved!');
-       });
-      console.log("hello")
+   console.log(req.body)
+   
+   var readFile = fs.readFileSync(path.join(__dirname,"./Develop/db/db.json"))
+    readFile = JSON.parse(readFile);
+
+   
+    console.log(readFile)
+     var body = req.body;
+     console.log(body)
+    
+     var noteFileArray = fs.writeFileSync()
+      //  fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), body, function (err) {
+      //   if (err) throw err;
+      //     console.log('Saved!');
+      //  });
  })
  
 app.get("*", function(req, res) {
