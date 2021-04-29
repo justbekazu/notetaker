@@ -7,7 +7,7 @@ const uniqid = require("uniqid");
 const db = require("./Develop/db/db.json");
 
 
-
+//adding id's
 
 const PORT = process.env.PORT || 3001;
 
@@ -32,21 +32,22 @@ app.get("/api/notes", function(req, res) {
 })
 
  app.post("/api/notes", function(req, res) {
-   console.log(req.body)
+
    
    var readFile = fs.readFileSync(path.join(__dirname,"./Develop/db/db.json"))
     readFile = JSON.parse(readFile);
 
-   
-    console.log(readFile)
+    req.body.id = readFile.length +1;
+
      var body = req.body;
-     console.log(body)
+    readFile.push(body);
+    console.log(readFile)
     
-     var noteFileArray = fs.writeFileSync()
-      //  fs.appendFile((path.join(__dirname,"./Develop/db/db.json")), body, function (err) {
-      //   if (err) throw err;
-      //     console.log('Saved!');
-      //  });
+    var noteFileArray = fs.writeFileSync(path.join (__dirname,"./Develop/db/db.json"), JSON.stringify(readFile));
+    console.log(noteFileArray)
+
+    res.json(noteFileArray)
+
  })
  
 app.get("*", function(req, res) {
